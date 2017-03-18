@@ -1,0 +1,47 @@
+#include<iostream>
+
+using namespace std;
+
+void quick_sort(int l, int r, int s[])
+{
+	if (l < r)
+	{
+		int i = l, j = r, x = s[l];
+		while (i < j)
+		{
+			while (i<j&&s[j]>x)
+			{
+				j--;
+			}
+			s[i++] = s[j];
+			while (i < j&& s[i] < x)
+			{
+				i++;
+			}
+			s[j--] = s[i];
+		}
+		s[i] = x;
+		quick_sort(l, i - 1, s);
+		quick_sort(j + 1, r, s);
+	}
+}
+
+int main()
+{
+	int A[16];
+	for (int i = 0; i < 16; i++)
+	{
+		A[i] = rand();
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		cout << A[i]<<" ";
+	}
+	cout << endl;
+	quick_sort(0, 15, A);
+	for (int i = 0; i < 16; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
